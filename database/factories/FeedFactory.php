@@ -14,9 +14,9 @@ class FeedFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
-        $url = $this->faker->url . '?query=' . random_int(0, 1000);
+        $url = $this->faker->url() . '?query=' . random_int(0, 1000);
         return [
             'url' => $url,
             'last_fetched_at' => now()->subHours(random_int(0, 100))->unix(),

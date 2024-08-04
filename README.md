@@ -13,6 +13,7 @@ The following features are built into the application:
   - Every hour by default, configurable down to 5 mins. 
 - Custom feed names and colors.
 - Feed-based tags for categorization.
+- Ability to hide feed posts by default.
 - 3 different post layout modes (card, list, compact).
 - Fetching of page open-graph images.
 - Feeds managed via a single plaintext file.
@@ -131,6 +132,11 @@ https://example.com/feed-b.xml News_Site #news
 # Feed color can be set using square brackets after the name.
 # The color must be a CSS-compatible color value.
 https://example.com/feed-c.xml Blue_News[#0078b9] #news #blue
+
+# Feeds starting with a '-' are flagged as hidden.
+# Posts for hidden feeds won't be shown on the homepage
+# but can be seen via any type of active filter.
+- https://example.com/feed-d.xml Cat_Facts #cats #facts
 ```
 
 ## App Configuration
@@ -252,11 +258,17 @@ This project uses [PHPUnit](https://phpunit.de/) for testing. Tests will use the
 ./vendor/bin/php-cs-fixer fix
 ```
 
+A command is built-in to test RSS feeds where needed. This will just provide a boolean yes/no fetchable status result, but you can run it with debugging with breakpoints for further diagnosis:
+
+```bash
+php artisan rss:test-feed https://danb.me/blog/index.xml
+```
+
 ## Attribution
 
 This is primarily built using the following great projects and technologies:
 
-- [Laravel](https://laravel.com/) - [MIT License](https://github.com/laravel/framework/blob/9.x/LICENSE.md)
+- [Laravel](https://laravel.com/) - [MIT License](https://github.com/laravel/framework/blob/10.x/LICENSE.md)
 - [InertiaJS](https://inertiajs.com/) - [MIT License](https://github.com/inertiajs/inertia/blob/master/LICENSE)
 - [SQLite](https://www.sqlite.org/index.html) - [Public Domain](https://www.sqlite.org/copyright.html)
 - [TailwindCSS](https://tailwindcss.com/) - [MIT License](https://github.com/tailwindlabs/tailwindcss/blob/master/LICENSE)

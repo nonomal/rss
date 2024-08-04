@@ -1,4 +1,5 @@
 /feeds.txt
+/feeds.txt.*
 /node_modules
 /public/hot
 /public/storage
@@ -7,9 +8,11 @@
 /public/build
 /storage/*.key
 /vendor
+.DS_Store
 .env
 .env.backup
-.phpunit.result.cache
+/.phpunit.cache
+/.phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
@@ -17,3 +20,4 @@ yarn-error.log
 /.idea
 /.vscode
 .php-cs-fixer.cache
+/test-files

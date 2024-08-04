@@ -15,13 +15,13 @@ class PostFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
-        $url = $this->faker->url . '?query=' . random_int(0, 1000);
+        $url = $this->faker->url() . '?query=' . random_int(0, 1000);
         return [
             'feed_id' => Feed::factory(),
             'published_at' => now()->subHours(random_int(0, 200))->unix(),
-            'title' => $this->faker->title,
+            'title' => $this->faker->title(),
             'description' => $this->faker->words(50, true),
             'url' => $url,
             'guid' => $url,

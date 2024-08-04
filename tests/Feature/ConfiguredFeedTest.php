@@ -8,9 +8,9 @@ use App\Models\Feed;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
-class ConfiguredFeedTest extends TestCase
+final class ConfiguredFeedTest extends TestCase
 {
-    public function test_is_outdated_can_be_controlled_by_config()
+    public function test_is_outdated_can_be_controlled_by_config(): void
     {
         $now = time();
         $feed = new Feed();
@@ -21,7 +21,8 @@ class ConfiguredFeedTest extends TestCase
             'My great feed',
             'https://example.com',
             '#fff',
-            ['#a']
+            ['#a'],
+            false,
         );
 
         config()->set('app.feed_update_frequency', 60);
@@ -38,14 +39,15 @@ class ConfiguredFeedTest extends TestCase
         $this->assertTrue($configuredFeed->isOutdated());
     }
 
-    public function test_start_reloading_dispatched_refresh_job()
+    public function test_start_reloading_dispatched_refresh_job(): void
     {
         $configuredFeed = new ConfiguredFeed(
             new Feed(),
             'My great feed',
             'https://example.com',
             '#fff',
-            ['#a']
+            ['#a'],
+            false,
         );
         Queue::fake();
 
